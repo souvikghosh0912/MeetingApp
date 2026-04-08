@@ -56,39 +56,6 @@ export const NODE_DEFINITIONS: AutomationNodeDef[] = [
       },
     ],
   },
-  {
-    type: "trigger_schedule",
-    category: "trigger",
-    label: "Schedule",
-    description: "Run workflow on a schedule",
-    icon: "⏰",
-    color: "emerald",
-    inputs: 0,
-    outputs: 1,
-    fields: [
-      {
-        key: "cronExpression",
-        label: "Cron Expression",
-        type: "text",
-        placeholder: "0 9 * * *",
-        defaultValue: "0 9 * * *",
-        description: "Standard cron syntax",
-      },
-      {
-        key: "timezone",
-        label: "Timezone",
-        type: "select",
-        options: [
-          { label: "UTC", value: "UTC" },
-          { label: "Asia/Kolkata (IST)", value: "Asia/Kolkata" },
-          { label: "America/New_York (EST)", value: "America/New_York" },
-          { label: "Europe/London (GMT)", value: "Europe/London" },
-        ],
-        defaultValue: "Asia/Kolkata",
-      },
-    ],
-  },
-
   // ── AI NODES ────────────────────────────────────────────────
   {
     type: "ai_nvidia_nim",
