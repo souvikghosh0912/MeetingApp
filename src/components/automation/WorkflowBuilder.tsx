@@ -246,25 +246,8 @@ export function WorkflowBuilder({ workflow }: WorkflowBuilderProps) {
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || "Registration failed");
 
-      // Register schedule if there's a schedule trigger node
-      const scheduleTrigger = nodes.find((n) => (n.data as AutomationNodeData).nodeType === "trigger_schedule");
-      if (scheduleTrigger) {
-        const cfg = (scheduleTrigger.data as AutomationNodeData).config;
-        await fetch("/api/automation/results", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            action: "register_schedule",
-            workflowId: workflow.id,
-            projectId: workflow.projectId,
-            cronExpression: cfg.cronExpression || "0 9 * * *",
-            timezone: cfg.timezone || "UTC",
-          }),
-        });
-      }
-
       toast.success("Workflow registered!", {
-        description: json.webhookUrl ? `Webhook URL copied to clipboard` : "Schedule activated",
+        description: json.webhookUrl ? `Webhook URL copied to clipboard` : "Workflow registered successfully",
       });
       if (json.webhookUrl) navigator.clipboard.writeText(json.webhookUrl).catch(() => {});
     } catch (err) {
@@ -483,7 +466,7 @@ export function WorkflowBuilder({ workflow }: WorkflowBuilderProps) {
         <button
           onClick={handleRegister}
           disabled={registering || nodes.length === 0}
-          title="Register workflow for webhook & schedule triggers"
+          title="Register workflow for webhook triggers"
           className={cn(
             "h-7 px-3 flex items-center gap-1.5 rounded-lg text-[11px] font-medium transition-all",
             registering
