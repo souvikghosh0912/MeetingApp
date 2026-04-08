@@ -8,7 +8,6 @@ export type AutomationNodeType =
   // Triggers
   | "trigger_upload"
   | "trigger_webhook"
-  | "trigger_schedule"
   // AI
   | "ai_nvidia_nim"
   | "ai_openai"
