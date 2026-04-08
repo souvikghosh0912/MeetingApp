@@ -10,7 +10,11 @@ import { createClient } from "@/lib/supabase/client";
 function LoginForm() {
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(
+    searchParams.get("error")
+      ? decodeURIComponent(searchParams.get("error")!)
+      : null
+  );
 
   const handleGoogleSignIn = async () => {
     setLoading(true);
@@ -41,9 +45,9 @@ function LoginForm() {
         <span className="text-[16px] font-semibold text-white">Mnemis</span>
       </Link>
 
-      <h1 className="text-2xl font-bold text-white mb-2">Welcome back</h1>
+      <h1 className="text-2xl font-bold text-white mb-2">Get started</h1>
       <p className="text-sm text-text-secondary mb-8">
-        Sign in to your AI automation workspace.
+        Sign in or create your account to continue.
       </p>
 
       {error && (
@@ -67,16 +71,8 @@ function LoginForm() {
         {loading ? "Redirecting..." : "Continue with Google"}
       </Button>
 
-      <div className="mt-6 rounded-xl border border-white/5 bg-white/3 px-4 py-3">
-        <p className="text-xs text-text-muted text-center">
-          Email/password login is temporarily unavailable.
-          <br />
-          Please use Google Sign-In.
-        </p>
-      </div>
-
       <p className="mt-6 text-center text-xs text-text-muted">
-        By signing in, you agree to our terms of service and privacy policy.
+        By continuing, you agree to our terms of service and privacy policy.
       </p>
     </div>
   );
