@@ -98,18 +98,6 @@ async function executeNode(
       };
     }
 
-    case "trigger_schedule": {
-      if (input !== null && input !== undefined) return input;
-      const tz = (config.timezone as string) || "UTC";
-      return {
-        status: "scheduled",
-        cron: (config.cronExpression as string) || "0 9 * * *",
-        timezone: tz,
-        currentTimeInZone: new Date().toLocaleString("en-US", { timeZone: tz }),
-        message: "Schedule registered. The cron runner will execute this workflow automatically.",
-      };
-    }
-
     // ── AI NODES ────────────────────────────────────────────────────────────
 
     case "ai_nvidia_nim": {
