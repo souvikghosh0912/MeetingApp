@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@/lib/supabase/server";
+import { createClient, createServiceClient } from "@/lib/supabase/server";
 
 export async function GET(request: NextRequest) {
   const requestUrl = new URL(request.url);
@@ -12,9 +12,12 @@ export async function GET(request: NextRequest) {
     const { data, error } = await supabase.auth.exchangeCodeForSession(code);
 
     if (!error && data.user) {
-      // Ensure a profile row exists — the DB trigger handles this on first signup,
-      // but we upsert here as a safety net in case the trigger was skipped or failed.
-      await supabase.from("profiles").upsert(
+      // Use the service role client to upsert the profile so this always
+      // succeeds regardless of RLS policies. The DB trigger handles the
+      // INSERT on first signup, but this is a guaranteed fallback — critical
+      // for new users where the trigger may not have fired yet.
+      const serviceClient = await createServiceClient();
+      await serviceClient.from("profiles").upsert(
         {
           id: data.user.id,
           display_name:
