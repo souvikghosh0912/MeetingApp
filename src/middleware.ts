@@ -62,6 +62,13 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
+  // Redirect authenticated users away from the landing page and login straight to /home
+  if (user && (pathname === "/" || pathname === "/login")) {
+    const homeUrl = request.nextUrl.clone();
+    homeUrl.pathname = "/home";
+    return NextResponse.redirect(homeUrl);
+  }
+
   if (pathname === "/dashboard") {
     const homeUrl = request.nextUrl.clone();
     homeUrl.pathname = "/home";
