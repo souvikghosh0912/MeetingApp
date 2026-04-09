@@ -9,7 +9,7 @@ import Link from "next/link";
 import { PLAN_LIMITS } from "@/lib/constants";
 import type { Plan, StudyPage } from "@/types";
 
-export const metadata: Metadata = { title: "Study System" };
+export const metadata: Metadata = { title: "Document Analysis" };
 
 async function RecentStudyPages({ userId }: { userId: string }) {
   const supabase = await createClient();
@@ -80,13 +80,13 @@ export default async function StudyDashboardPage() {
             <div className="h-7 w-7 rounded-[8px] bg-violet-400/10 flex items-center justify-center">
               <BookOpen className="h-3.5 w-3.5 text-violet-400" strokeWidth={1.8} />
             </div>
-            <span className="text-[11px] font-bold text-violet-400 uppercase tracking-widest">Study System</span>
+            <span className="text-[11px] font-bold text-violet-400 uppercase tracking-widest">Document Analysis</span>
           </div>
           <h1 className="text-[26px] font-bold text-white tracking-tight">
-            Study your books with AI
+            Analyze your documents with AI
           </h1>
           <p className="text-[14px] text-white/40 mt-1">
-            Upload page images. Get AI summaries, actions items, and concepts extracted instantly.
+            Upload page images. Get AI summaries, action items, and concepts extracted instantly.
           </p>
         </div>
         <Link
@@ -94,7 +94,7 @@ export default async function StudyDashboardPage() {
           className="hidden md:flex items-center gap-2 rounded-[9px] border border-white/[0.07] bg-white/[0.02] px-4 py-2 text-[13px] text-white/50 hover:text-white/80 hover:border-white/15 transition-all"
         >
           <BookMarked className="h-3.5 w-3.5" />
-          All Study Pages
+          All Documents
         </Link>
       </div>
 
@@ -154,7 +154,7 @@ export default async function StudyDashboardPage() {
         <div className="flex items-center gap-2 mb-4">
           <Upload className="h-3.5 w-3.5 text-white/30" />
           <h2 className="text-[13px] font-semibold text-white/50 uppercase tracking-widest">
-            New Study Page
+            New Document
           </h2>
         </div>
         <StudyUploader
