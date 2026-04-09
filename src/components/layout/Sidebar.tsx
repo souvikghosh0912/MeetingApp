@@ -439,7 +439,7 @@ export function Sidebar({ profile }: SidebarProps) {
           </p>
           <div className="mt-0.5 space-y-0.5">
             <NavItem href="/meeting" icon={Mic} label="Meeting Intelligence" badge="Live" badgeColor="bg-blue-400/15 text-blue-400" />
-            <NavItem href="/study" icon={BookOpen} label="Study System" badge="New" badgeColor="bg-violet-400/15 text-violet-400" />
+            <NavItem href="/study" icon={BookOpen} label="Document Analysis" badge="New" badgeColor="bg-violet-400/15 text-violet-400" />
             <NavItem href="/resume" icon={FileSearch} label="Resume Screener" badge="Live" badgeColor="bg-indigo-400/15 text-indigo-400" />
             <NavItem href="/automation" icon={Zap} label="AI Automation" badge="New" badgeColor="bg-emerald-400/15 text-emerald-400" />
             <NavItem href="/tasks" icon={CheckSquare} label="Smart Tasks" badge="Soon" badgeColor="bg-white/10 text-white/40" disabled />
